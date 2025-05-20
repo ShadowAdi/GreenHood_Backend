@@ -22,7 +22,7 @@ export const RegisterUser = async (req, res, next) => {
         await newUser.save()
         return res.status(201).json({
             success: true,
-            message: "User Is Created"
+            message: "User Registered"
         })
 
     } catch (error) {
@@ -60,13 +60,14 @@ export const LoginUser = async (req, res, next) => {
         );
 
         return res.status(200).json({
-            message: "Login Successfull",
+            message: "Login Sucessfull",
             success: true,
             token,
             user: {
                 email: isUserFound.email,
                 name: isUserFound.name,
-                id: isUserFound._id
+                id: isUserFound._id,
+                karma: isUserFound.karma
             }
         })
 

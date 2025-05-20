@@ -2,7 +2,7 @@ import express from 'express'
 import { GetAuthenticatedUser, GetUser, GetUsers, LoginUser, RegisterUser, UpdateUser } from '../controllers/User.controller.js'
 import { AuthMiddleware } from '../utils/authMiddleware.js'
 import { CreateEvent, DeleteEvent, GetAllEvents, GetEvent, GetUserEvents, UpdateEvent } from '../controllers/Event.controller.js'
-import { CreateItem, DeleteItem, GetAllItems, GetClaimedItemsBasedOnUserId, GetItem, GetOwnedItemsBasedOnUserId, UpdateItem } from '../controllers/Item.controller.js'
+import { ClaimItem, CreateItem, DeleteItem, GetAllItems, GetClaimedItemsBasedOnUserId, GetItem, GetOwnedItemsBasedOnUserId, UpdateItem } from '../controllers/Item.controller.js'
 import { CreateService, DeleteService, GetAllServices, GetService, GetUserServices, UpdateService } from '../controllers/Service.controller.js'
 
 
@@ -29,6 +29,7 @@ router.get("/item/:itemId", GetItem)
 router.get("/item/claimed/:userId", GetClaimedItemsBasedOnUserId)
 router.get("/item/owned/:userId", GetOwnedItemsBasedOnUserId)
 router.post("/item/create", AuthMiddleware, CreateItem)
+router.patch("/item/claim/:itemId", AuthMiddleware, ClaimItem)
 router.post("/item/update/:itemId", AuthMiddleware, UpdateItem)
 router.delete("/item/delete/:itemId", AuthMiddleware, DeleteItem)
 

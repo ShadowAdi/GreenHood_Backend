@@ -4,7 +4,7 @@ import { CreateError } from "../utils/CreateError.js"
 
 export const GetAllItems = async (req, res, next) => {
     try {
-        const items = await ItemModel.find()
+        const items = await ItemModel.find().populate("owner", "_id name email").populate("claimedBy", "_id name email")
         return res.status(200).json({
             items,
             totalLength: items.length,

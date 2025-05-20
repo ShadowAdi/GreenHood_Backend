@@ -4,7 +4,7 @@ import { CreateError } from "../utils/CreateError.js"
 
 export const GetAllEvents = async (req, res, next) => {
     try {
-        const events = await EventModel.find()
+        const events = await EventModel.find().populate("organizer", "_id name email").populate("attendees", "_id name email")
         return res.status(200).json({
             events,
             totalLength: events.length,
