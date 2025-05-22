@@ -22,7 +22,7 @@ export const GetEvent = async (req, res, next) => {
         if (!eventId) {
             throw CreateError(401, "Event Id Is Not Given")
         }
-        const findEvent = await EventModel.findById(eventId)
+        const findEvent = await EventModel.findById(eventId).populate("organizer", "_id name email").populate("attendees", "_id name email")
         if (!findEvent) {
             throw CreateError(409, "Event Not Found");
         }
@@ -163,41 +163,36 @@ export const GetUserEvents = async (req, res, next) => {
 
 export const AttendEvent = async (req, res, next) => {
     try {
-        const { userId } = req.user
-        if (!userId) {
-            throw CreateError(400, "You Are Not Authenticated");
-        }
-        const { eventId } = req.params
-        if (!eventId) {
-            throw CreateError(400, "Event Id Is Not Found");
-        }
+        const { userId } = req.user;
+        const { eventId } = req.params;
 
-        const findEvent = EventModel.findById(eventId)
-        if (!findEvent) {
-            throw CreateError(409, "Event Is Not Found")
-        }
+        if (!userId) throw CreateError(400, "You are not authenticated");
+        if (!eventId) throw CreateError(400, "Event ID is not provided");
+
+        const findEvent = await EventModel.findById(eventId);
+        if (!findEvent) throw CreateError(409, "Event not found");
 
         if (findEvent.organizer.toString() === userId) {
             throw CreateError(403, "You can't join your own event");
         }
 
-        const alreadyAttending = findEvent.attendees.includes(userId);
+        const alreadyAttending = findEvent.attendees.some(id => id.toString() === userId);
         if (alreadyAttending) {
             return res.status(200).json({ message: "Already attending", success: true });
         }
 
-        findEvent.attendees.push(userId)
-        findEvent.attendeesCount += 1
-        await findEvent.save()
+        findEvent.attendees.push(userId);
+        findEvent.attendeesCount += 1;
+        await findEvent.save();
 
         await UserModel.findByIdAndUpdate(
             userId,
             {
                 $addToSet: { eventsAttended: eventId },
-                $inc: { karma: 10 }
+                $inc: { karma: 10 },
             },
             { new: true }
-        )
+        );
 
         return res.status(200).json({
             success: true,
@@ -205,7 +200,7 @@ export const AttendEvent = async (req, res, next) => {
         });
 
     } catch (error) {
-        console.log("Failed to Join An Event ", error)
+        console.log("Failed to Join An Event", error);
         next(error);
     }
-}
+};

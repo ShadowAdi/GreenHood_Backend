@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import bcrypt from 'bcrypt'
 
 const userSchema = mongoose.Schema({
     name: { type: String, required: true },
@@ -12,4 +13,13 @@ const userSchema = mongoose.Schema({
     servicesPosted: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service' }],
 }, { timestamps: true });
 
+// userSchema.pre('save', async function (next) {
+//     if (!this.isModified('password')) return next()
+//     const salt = await bcrypt.genSalt(10)
+//     this.password = await bcrypt.hash(this.password, salt)
+//     next()
+// })
+
 export const UserModel = mongoose.model('User', userSchema);
+
+

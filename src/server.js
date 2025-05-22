@@ -7,6 +7,7 @@ import { logger } from './utils/logger.js'
 import client from 'prom-client'
 import helmet from "helmet";
 import {rateLimit} from "express-rate-limit";
+import { connectDB } from './db/connect.js'
 
 
 const collectDefaultMetrics = client.collectDefaultMetrics
@@ -15,6 +16,7 @@ dotenv.config()
 
 const app = express()
 
+connectDB()
 
 app.use(helmet())
 app.use(rateLimit({ windowMs: 15 * 60 * 1000, max: 100 }))
@@ -39,6 +41,6 @@ app.use(errorHandler)
 
 
 const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
+app.listen(PORT,'0.0.0.0', () => {
     logger.info(`Server is running on port ${PORT}`)
 })

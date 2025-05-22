@@ -4,10 +4,10 @@ import { CreateError } from "../utils/CreateError.js"
 
 export const GetAllServices = async (req, res, next) => {
     try {
-        const services = await ServiceModel.find()
+        const services = await ServiceModel.find().populate("postedBy","_id name email")
         return res.status(200).json({
             services,
-            totalLength: items.length,
+            totalLength: services.length,
             success: true
         })
     } catch (error) {
@@ -62,7 +62,7 @@ export const CreateService = async (req, res, next) => {
         findUser.karma += 10
         await findUser.save()
 
-        const CreatedService = await EventModel({ title, description, category, postedBy: userId, contactInfo, location: { lat: location.lat, lng: location.lng, address: location.address } })
+        const CreatedService = await ServiceModel({ title, description, category, postedBy: userId, contactInfo, location: { lat: location.lat, lng: location.lng, address: location.address } })
         await CreatedService.save()
         return res.status(201).json({
             message: "Service Created",

@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import { CreateError } from "./CreateError.js";
 export const AuthMiddleware = async (req, res, next) => {
     const authHeader = req.headers.authorization
-    if (!authHeader || !authHeader.startswith("Bearer ")) {
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
         throw CreateError(401, "Unauthorized: No token provided");
     }
     const token = authHeader.split(" ")[1]

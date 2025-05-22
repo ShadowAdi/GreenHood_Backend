@@ -1,48 +1,63 @@
-import { UserModel } from "../schema/UserSchema.js"
-import bcrypt from 'bcrypt'
-import jwt from 'jsonwebtoken'
-import dotenv from 'dotenv'
-import { CreateError } from "../utils/CreateError.js"
-dotenv.config()
+import { UserModel } from "../schema/UserSchema.js";
+import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import { CreateError } from "../utils/CreateError.js";
+dotenv.config();
 
 export const RegisterUser = async (req, res, next) => {
     try {
-        const { email, name, password, location } = req.body
+        const { email, name, password, location } = req.body;
         if (!email || !name || !password || !location) {
             throw CreateError(401, "Details Are Not Provided");
         }
-        const isUserFound = await UserModel.findOne({ email: email })
+        const isUserFound = await UserModel.findOne({ email: email });
         if (isUserFound) {
-            throw CreateError(409, "User Already Exists");
+            throw CreateError(409, "User Don't Exists");
         }
 
-        const hashedPassword = bcrypt.hash(password, 10)
+        const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = await UserModel({ email, password: hashedPassword, name, location: location })
-        await newUser.save()
+        const newUser = new UserModel({
+            email,
+            password: hashedPassword,
+            name,
+            location,
+        });
+        await newUser.save();
+
         return res.status(201).json({
             success: true,
-            message: "User Registered"
-        })
-
+            message: "User Registered",
+        });
     } catch (error) {
-        console.log("Error in creating user ", error)
+        console.log("Error in creating user ", error);
         next(error);
     }
-}
+};
 
 export const LoginUser = async (req, res, next) => {
     try {
-        const { email, password } = req.body
+        const { email, password } = req.body;
         if (!email || !password) {
             throw CreateError(401, "Credentials Are Not Provided");
         }
-        const isUserFound = await UserModel.findOne({ email: email })
+        const isUserFound = await UserModel.findOne({ email: email }).select(
+            "+password"
+        );
+        console.log("user found ", isUserFound)
+        console.log("email and password ", email + " " + password)
+
         if (!isUserFound) {
             throw CreateError(409, "User Not Found. Register Yourself First");
         }
 
-        const isPasswordCorrect = await bcrypt.compare(password, isUserFound.password);
+        const isPasswordCorrect = await bcrypt.compare(
+            password,
+            isUserFound.password
+        );
+        console.log("isPasswordCorrect?", isPasswordCorrect);
+
         if (!isPasswordCorrect) {
             throw CreateError(401, "Incorrect credentials");
         }
@@ -51,7 +66,6 @@ export const LoginUser = async (req, res, next) => {
         if (!JWT_SECRET) {
             throw CreateError(500, "Jwt Secret Not Found");
         }
-
 
         const token = jwt.sign(
             { email: isUserFound.email, userId: isUserFound._id },
@@ -67,24 +81,24 @@ export const LoginUser = async (req, res, next) => {
                 email: isUserFound.email,
                 name: isUserFound.name,
                 id: isUserFound._id,
-                karma: isUserFound.karma
-            }
-        })
-
-
+                karma: isUserFound.karma,
+            },
+        });
     } catch (error) {
-        console.log("Error in Logging user ", error)
+        console.log("Error in Logging user ", error);
         next(error);
     }
-}
+};
 
 export const GetUser = async (req, res, next) => {
     try {
-        const userId = req.params.userId
+        const userId = req.params.userId;
         if (!userId) {
-            throw CreateError(401, "User Id Is Not Given")
+            throw CreateError(401, "User Id Is Not Given");
         }
-        const findUser = await UserModel.findOne(userId).select("-password")
+        const findUser = await UserModel.findOne({ _id: userId }).select(
+            "-password"
+        );
         if (!findUser) {
             throw CreateError(409, "User Not Found");
         }
@@ -92,25 +106,25 @@ export const GetUser = async (req, res, next) => {
         return res.status(200).json({
             user: findUser,
             success: true,
-        })
+        });
     } catch (error) {
-        console.log("Error in finding user ", error)
-        next(error)
+        console.log("Error in finding user ", error);
+        next(error);
     }
-}
+};
 
 export const GetUsers = async (req, res, next) => {
     try {
-        const users = await UserModel.find().sort("-karma").select("-password")
+        const users = await UserModel.find().sort("-karma").select("-password");
         return res.status(200).json({
             users,
-            success: true
-        })
+            success: true,
+        });
     } catch (error) {
-        console.log("Error in finding users ", error)
-        next(error)
+        console.log("Error in finding users ", error);
+        next(error);
     }
-}
+};
 
 export const UpdateUser = async (req, res, next) => {
     try {
@@ -122,7 +136,6 @@ export const UpdateUser = async (req, res, next) => {
         const findUser = await UserModel.findOne({ _id: userId });
         if (!findUser) {
             throw CreateError(404, "User not found");
-
         }
 
         const updatedUser = await UserModel.findOneAndUpdate(
@@ -134,33 +147,36 @@ export const UpdateUser = async (req, res, next) => {
         return res.status(200).json({
             success: true,
             message: "User updated successfully",
-            user: updatedUser
+            user: updatedUser,
         });
-
     } catch (error) {
         console.error("Error in updating user:", error);
-        next(error)
+        next(error);
     }
 };
 
 export const GetAuthenticatedUser = async (req, res, next) => {
     try {
-        const { _, userId } = req.user
+        const { _, userId } = req.user;
         if (!userId) {
             throw CreateError(400, "You Are Not Logged In");
         }
-        const findUser = await UserModel.findOne({ _id: userId }).select("-password");
+        const findUser = await UserModel.findOne({ _id: userId })
+            .populate("eventsAttended", "_id title")
+            .populate("itemsClaimed", "_id title")
+            .populate("itemsDonated", "_id title")
+            .populate("servicesPosted", "_id title")
+            .select("-password");
         if (!findUser) {
             throw CreateError(404, "User not found");
-
         }
         return res.status(200).json({
             success: true,
             message: "User found successfully",
-            user: findUser
+            user: findUser,
         });
     } catch (error) {
         console.error("Error in getting user:", error);
-        next(error)
+        next(error);
     }
-}
+};

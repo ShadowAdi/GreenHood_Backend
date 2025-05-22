@@ -1,0 +1,117 @@
+2025-05-22T07:58:54.188Z info: MongoDB connected.
+2025-05-22T07:59:32.993Z info: Server is running on port 3000
+2025-05-22T07:59:33.650Z info: MongoDB connected.
+2025-05-22T08:00:02.173Z info: POST /api/user/register
+2025-05-22T08:00:11.405Z info: POST /api/user/login
+2025-05-22T08:00:11.627Z error: undefined - POST /api/user/login
+2025-05-22T08:01:20.390Z info: Server is running on port 3000
+2025-05-22T08:01:21.269Z info: MongoDB connected.
+2025-05-22T08:01:33.857Z info: POST /api/user/login
+2025-05-22T08:01:34.131Z error: undefined - POST /api/user/login
+2025-05-22T08:01:47.071Z info: Server is running on port 3000
+2025-05-22T08:01:47.851Z info: MongoDB connected.
+2025-05-22T08:02:01.970Z info: POST /api/user/register
+2025-05-22T08:02:13.412Z info: POST /api/user/login
+2025-05-22T08:02:13.623Z error: undefined - POST /api/user/login
+2025-05-22T08:04:10.212Z info: Server is running on port 3000
+2025-05-22T08:04:10.852Z info: MongoDB connected.
+2025-05-22T08:04:19.684Z info: GET /api/event/events
+2025-05-22T08:04:34.407Z info: POST /api/user/login
+2025-05-22T08:04:34.730Z error: undefined - POST /api/user/login
+2025-05-22T08:05:50.505Z info: Server is running on port 3000
+2025-05-22T08:05:51.192Z info: MongoDB connected.
+2025-05-22T08:06:06.236Z info: POST /api/user/login
+2025-05-22T08:06:06.556Z error: undefined - POST /api/user/login
+2025-05-22T08:06:39.419Z info: POST /api/user/register
+2025-05-22T08:06:45.611Z info: POST /api/user/login
+2025-05-22T08:06:45.838Z error: undefined - POST /api/user/login
+2025-05-22T08:08:57.462Z info: Server is running on port 3000
+2025-05-22T08:08:59.257Z info: MongoDB connected.
+2025-05-22T08:09:03.603Z info: POST /api/user/login
+2025-05-22T08:09:03.965Z error: undefined - POST /api/user/login
+2025-05-22T08:09:32.661Z info: POST /api/user/login
+2025-05-22T08:09:32.903Z error: undefined - POST /api/user/login
+2025-05-22T08:10:58.747Z info: Server is running on port 3000
+2025-05-22T08:10:59.371Z info: MongoDB connected.
+2025-05-22T08:11:10.728Z info: POST /api/user/login
+2025-05-22T08:11:10.988Z error: undefined - POST /api/user/login
+2025-05-22T08:11:48.221Z info: POST /api/user/register
+2025-05-22T08:11:54.223Z info: POST /api/user/login
+2025-05-22T08:11:54.604Z info: GET /api/user/authenticated/me
+2025-05-22T08:11:54.776Z info: GET /api/event/events
+2025-05-22T08:12:03.131Z info: GET /api/event/682ed942fc3d6023a1dc6938
+2025-05-22T08:12:09.636Z info: PATCH /api/event/attend/682ed942fc3d6023a1dc6938
+2025-05-22T08:12:09.949Z info: GET /api/event/682ed942fc3d6023a1dc6938
+2025-05-22T08:12:12.900Z info: GET /api/event/events
+2025-05-22T08:12:16.235Z info: GET /api/item/items
+2025-05-22T08:12:31.244Z info: GET /api/service/services
+2025-05-22T08:12:36.902Z info: GET /api/event/events
+2025-05-22T08:13:55.453Z info: POST /api/user/login
+2025-05-22T08:13:55.872Z info: GET /api/user/authenticated/me
+2025-05-22T08:13:55.894Z info: GET /api/event/events
+2025-05-22T08:14:00.440Z info: GET /api/event/682ed943fc3d6023a1dc695f
+2025-05-22T08:14:03.586Z info: PATCH /api/event/attend/682ed943fc3d6023a1dc695f
+2025-05-22T08:14:03.774Z info: GET /api/event/682ed943fc3d6023a1dc695f
+2025-05-22T08:14:05.960Z info: GET /api/event/events
+2025-05-22T08:14:08.391Z info: GET /api/item/items
+2025-05-22T08:14:11.905Z info: PATCH /api/item/claim/682ed940fc3d6023a1dc68f4
+2025-05-22T08:14:16.457Z info: GET /api/user/authenticated/me
+2025-05-22T08:14:16.729Z info: GET /api/item/items
+2025-05-22T08:14:16.764Z info: GET /api/user/authenticated/me
+2025-05-22T08:14:22.138Z info: GET /api/service/services
+2025-05-22T08:14:55.026Z info: POST /api/service/create
+2025-05-22T08:14:55.240Z info: GET /api/service/services
+2025-05-22T08:16:19.417Z info: Server is running on port 3000
+2025-05-22T08:16:20.175Z info: MongoDB connected.
+2025-05-22T08:16:23.243Z info: GET /api/service/services
+2025-05-22T08:16:23.263Z info: GET /api/user/authenticated/me
+2025-05-22T08:16:23.393Z info: GET /api/user/authenticated/me
+2025-05-22T08:19:58.679Z info: POST /api/user/login
+2025-05-22T08:19:58.976Z info: GET /api/user/authenticated/me
+2025-05-22T08:19:59.111Z info: GET /api/event/events
+2025-05-22T08:20:03.346Z info: GET /api/event/682ed943fc3d6023a1dc695f
+2025-05-22T08:20:09.180Z info: GET /api/event/events
+2025-05-22T08:20:39.315Z info: POST /api/event/create
+2025-05-22T08:20:39.743Z info: GET /api/event/events
+2025-05-22T08:20:42.238Z info: GET /api/item/items
+2025-05-22T08:20:47.410Z info: PATCH /api/item/claim/682ed940fc3d6023a1dc68f6
+2025-05-22T08:20:50.179Z info: GET /api/user/authenticated/me
+2025-05-22T08:20:50.607Z info: GET /api/item/items
+2025-05-22T08:20:50.758Z info: GET /api/user/authenticated/me
+2025-05-22T08:20:53.436Z info: GET /api/event/events
+2025-05-22T08:20:56.679Z info: GET /api/event/682ede57f524f2faaad8acd7
+2025-05-22T08:20:59.296Z info: PATCH /api/event/attend/682ede57f524f2faaad8acd7
+2025-05-22T08:20:59.362Z error: undefined - PATCH /api/event/attend/682ede57f524f2faaad8acd7
+2025-05-22T08:21:06.011Z info: PATCH /api/event/attend/682ede57f524f2faaad8acd7
+2025-05-22T08:21:06.060Z error: undefined - PATCH /api/event/attend/682ede57f524f2faaad8acd7
+2025-05-22T08:21:12.597Z info: PATCH /api/event/attend/682ede57f524f2faaad8acd7
+2025-05-22T08:21:12.819Z error: undefined - PATCH /api/event/attend/682ede57f524f2faaad8acd7
+2025-05-22T08:21:20.742Z info: GET /api/user/authenticated/me
+2025-05-22T08:21:20.875Z info: GET /api/event/682ede57f524f2faaad8acd7
+2025-05-22T08:21:21.009Z info: GET /api/user/authenticated/me
+2025-05-22T08:21:25.130Z info: GET /api/event/events
+2025-05-22T08:21:36.424Z info: GET /api/event/682ed943fc3d6023a1dc695f
+2025-05-22T08:21:39.952Z info: GET /api/event/events
+2025-05-22T08:21:41.689Z info: GET /api/event/682ed943fc3d6023a1dc6953
+2025-05-22T08:21:43.640Z info: GET /api/event/events
+2025-05-22T08:22:04.704Z info: POST /api/user/login
+2025-05-22T08:22:05.087Z info: GET /api/user/authenticated/me
+2025-05-22T08:22:05.182Z info: GET /api/event/events
+2025-05-22T08:22:07.502Z info: GET /api/event/682ed943fc3d6023a1dc6953
+2025-05-22T08:22:09.860Z info: PATCH /api/event/attend/682ed943fc3d6023a1dc6953
+2025-05-22T08:22:10.120Z info: GET /api/event/682ed943fc3d6023a1dc6953
+2025-05-22T08:22:11.637Z info: GET /api/event/events
+2025-05-22T08:22:13.869Z info: GET /api/item/items
+2025-05-22T08:22:17.369Z info: PATCH /api/item/claim/682ed940fc3d6023a1dc68f9
+2025-05-22T08:22:19.699Z info: GET /api/user/authenticated/me
+2025-05-22T08:22:19.873Z info: GET /api/user/authenticated/me
+2025-05-22T08:22:20.053Z info: GET /api/item/items
+2025-05-22T08:22:28.937Z info: GET /api/service/services
+2025-05-22T08:23:02.719Z info: POST /api/service/create
+2025-05-22T08:23:03.117Z info: GET /api/service/services
+2025-05-22T08:23:06.736Z info: GET /api/event/events
+2025-05-22T08:23:27.049Z info: POST /api/event/create
+2025-05-22T08:23:27.319Z info: GET /api/event/events
+2025-05-22T08:23:30.836Z info: GET /api/item/items
+2025-05-22T08:24:15.841Z info: POST /api/item/create
+2025-05-22T08:24:16.036Z info: GET /api/item/items
